@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { BookOpen, Settings, GitBranch, Github, Workflow, Rocket, AlertTriangle, CheckSquare, FileText, Menu, X } from "lucide-react";
+import { BookOpen, Settings, GitBranch, Github, Workflow, Rocket, AlertTriangle, CheckSquare, FileText, Menu, X, User, LogIn } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/hooks/use-auth";
 
 const navItems = [
   { path: "/", label: "Home", icon: BookOpen, emoji: "🏠" },
@@ -18,6 +19,10 @@ const navItems = [
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { user } = useAuth();
+  const accountItem = user
+    ? { path: "/profile", label: "Profile", emoji: "👤", icon: User }
+    : { path: "/auth", label: "Login / Sign Up", emoji: "🔐", icon: LogIn };
 
   return (
     <div className="flex min-h-screen">
@@ -38,7 +43,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <p className="text-xs text-muted-foreground mt-1">Beginner's Guide</p>
         </div>
         <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100vh-100px)]">
-          {navItems.map((item) => {
+          {[...navItems, accountItem].map((item) => {
             const isActive = location.pathname === item.path;
             return (
               <Link

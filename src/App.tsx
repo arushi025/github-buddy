@@ -13,6 +13,8 @@ import Errors from "./pages/Errors.tsx";
 import Practice from "./pages/Practice.tsx";
 import Cheatsheet from "./pages/Cheatsheet.tsx";
 import PullRequestGuide from "./pages/PullRequestGuide.tsx";
+import Auth from "./pages/Auth.tsx";
+import Profile from "./pages/Profile.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import CursorTrail from "./components/CursorTrail.tsx";
 
@@ -36,6 +38,8 @@ const App = () => (
           <Route path="/practice" element={<Practice />} />
           <Route path="/pr-guide" element={<PullRequestGuide />} />
           <Route path="/cheatsheet" element={<Cheatsheet />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
